@@ -1,0 +1,103 @@
+# Q.1) Shell command to create Fibonacci series.
+echo "How many number of terms to be generated ?"
+  read n
+function fib
+{
+  x=0
+  y=1
+  i=2
+  echo "Fibonacci Series up to $n terms :"
+  echo "$x"
+  echo "$y"
+  while [ $i -lt $n ]
+  do
+      i=`expr $i + 1 `
+      z=`expr $x + $y `
+      echo "$z"
+      x=$y
+      y=$z
+  done
+}
+r=`fib $n`
+echo "$r"
+
+
+
+# Q.2) Shell command to check if a number is Prime.
+#!/bin/bash
+echo -e "Enter Number : \c"
+read n
+for((i=2; i<=$n/2; i++))
+do
+  ans=$(( n%i ))
+  if [ $ans -eq 0 ]
+  then
+    echo "$n is not a prime number."
+    exit 0
+  fi
+done
+echo "$n is a prime number."
+
+
+
+# Q.3) Shell command to display Factorial of a number.
+#shell script for factorial of a number
+#factorial using while loop
+
+echo "Enter a number"
+read num
+
+fact=1
+
+while [ $num -gt 1 ]
+do
+  fact=$((fact * num))  #fact = fact * num
+  num=$((num - 1))      #num = num - 1
+done
+
+echo $fact
+
+
+
+# Q.4) Shell command to check if a number is Armstrong.
+echo "Enter the number"
+read n
+function ams
+{
+t=$n
+s=0
+b=0
+c=10
+while [ $n -gt $b ]
+do
+r=$((n % c))
+i=$((r * r * r))
+s=$((s + i))
+n=$((n / c))
+done
+echo $s
+if [ $s == $t ]
+then
+echo "Armstrong number"
+else
+echo "Not an Armstrong number"
+fi
+}
+result=`ams $n`
+echo "$result"
+
+
+
+## Q.5) Shell command to check for a Leap year.
+echo -n "Enter year (YYYY): "
+read y
+a = 'expr $y%4'
+b = 'expr $y%100'
+c = 'expr $y%400'
+if[$a -eq 0 -a $b -ne - -o $c -eq 0]
+then 
+echo "$y is leap year"
+else
+echo "$y is not a leap year"
+
+fi
