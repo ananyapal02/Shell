@@ -1,0 +1,1396 @@
+1---Armstrong.sh
+#!/bin/bash
+echo "Enter a number: "
+read c
+x=$c
+sum=0
+r=0
+n=0
+while [ $x -gt 0 ]
+do
+r=`expr $x % 10`
+n=`expr $r \* $r \* $r`
+sum=`expr $sum + $n`
+x=`expr $x / 10`
+done
+if [ $sum -eq $c ]
+then
+echo "It is an Armstrong Number."
+else
+echo "It is not an Armstrong Number."
+fi
+
+
+
+2---Celsius to Fahrenheit.sh
+read -p "Enter degree celsius temperature: " celsius
+fahrenheit=`echo "scale=4; $celsius*1.8 + 32" | bc`
+echo "$celsius degree celsius is equal to $fahrenheit degree fahrenheit"
+
+
+3---Fahrenheit to celsius.sh
+read -p "Enter degree fahrenheit temperature: " fahrenheit
+celsius=`echo "scale=4; ($fahrenheit - 32) / 1.8" | bc`
+echo "$fahrenheit degree fahrenheit is equal to $celsius degree celsius"
+
+
+
+4---Fibonacci series.sh
+#1.Fibonacci series
+#! /bin/bash
+echo "Enter the value of n"
+read n
+a=0
+b=1
+count=2
+echo "Fibonacci series:"
+echo $a
+echo $b
+while [ $count -le $n ]
+do
+fib=`expr $a + $b`
+a=$b
+b=$fib
+echo $fib
+count=`expr $count + 1`
+done
+
+
+
+
+
+5---The number of vowel and cosonants in a sentence.sh
+#!/bin/sh
+
+echo -n "Enter a line of text: "
+read string
+
+numCount=$(echo $string | grep -o "[0-9]" | wc --lines)
+vowCount=$(echo $string | grep -o -i "[aeiou]" | wc --lines)
+consCount=$(echo $string | grep -o -i "[bcdfghjklmnpqrstvwxyz]" | wc --lines)
+
+echo "The given string has $vowCount vowels, $consCount consonants and $numCount numbers in it."
+
+
+
+
+
+
+6---add of two matrix.sh
+#Bash script to add two matrix
+matrix1=(1 2 3 4 5 6 7 8 9) #Matrix of size 3 by 3
+matrix2=(11 12 13 14 15 16 17 18 18 19) #Matrix of size 3 by 3
+rows=3
+cols=3
+echo "First matrix"
+for((i=0; i<rows; i++))
+do
+  for((j=0; j<cols; j++))
+  do
+    index=$((i*cols+j))
+    echo -n "${matrix1[index]} "
+  done
+  echo
+done
+ 
+echo "Second matrix"
+for((i=0; i<rows; i++))
+do
+  for((j=0; j<cols; j++))
+  do
+    index=$((i*cols+j))
+    echo -n "${matrix2[index]} "
+  done
+  echo
+done
+ 
+k=0
+matrix3=()
+for((i=0; i<rows; i++))
+do
+  for((j=0; j<cols; j++))
+  do
+    index=$((i*cols+j))
+    matrix3[k]=$((${matrix1[index]} + ${matrix2[index]}))
+    k=$((k+1))
+  done
+done
+echo "Addition of two matrix"
+for((i=0; i<rows; i++))
+do
+  for((j=0; j<cols; j++))
+  do
+    index=$((i*cols+j))
+    echo -n "${matrix3[index]} "
+  done
+  echo
+done
+
+
+
+
+
+7---all_combination_of_1,23.sh
+# Shell script to generate all combinations of 1 2 3
+
+
+
+clear
+
+for i in 1 2 3
+
+do
+
+for j in 1 2 3
+
+do
+
+for k in 1 2 3
+
+do
+
+echo $i $j $k
+
+done
+
+done
+
+done
+
+
+
+8---all_primenumber_between_range.sh
+echo enter m and n
+read m n
+for a in $(seq $m $n)
+do
+    k=0
+    for i in $(seq 2 $(expr $a - 1))
+    do 
+        if [ $(expr $a % $i) -eq 0 ]
+        then
+            k=1
+            break
+        fi
+    done
+    if [ $k -eq 0 ]
+    then
+    echo $a
+    fi
+done
+
+
+
+
+9---area of a rectangle.sh
+read -p "Enter a length: " length
+read -p "Enter a width: " width
+area=$[$length*$width]
+echo "The area of the rectangle is $area"
+
+
+
+10---area of a tringle.sh
+read -p "Enter the first side: " a
+read -p "Enter the second side: " b
+read -p "Enter the third side: " c
+s=`echo "scale=4; ($a+$b+$c)/2" | bc`
+area=`echo "scale=4; sqrt($s*($s-$a)*($s-$b)*($s-$c))" | bc`
+echo "The area of the triangle is $area"
+
+
+11---binary search.sh
+echo “Enter the limit:”
+
+read n
+
+echo “Enter the numbers”
+
+for(( i=0 ;i<n; i++ ))
+
+do
+
+read m
+
+a[i]=$m
+
+done
+
+for(( i=1; i<n; i++ ))
+
+do
+
+for(( j=0; j<n-i; j++))
+
+do
+
+if [ ${a[$j]} -gt ${a[$j+1]} ]
+
+then
+
+t=${a[$j]}
+
+a[$j]=${a[$j+1]}
+
+a[$j+1]=$t
+
+fi
+
+done
+
+done
+
+echo “Sorted array is”
+
+for(( i=0; i<n; i++ ))
+
+do
+
+echo “${a[$i]}”
+
+done
+
+echo “Enter the element to be searched :”
+
+read s
+
+l=0
+
+c=0
+
+u=$(($n-1))
+
+while [ $l -le $u ]
+
+do
+
+mid=$(((( $l+$u ))/2 ))
+
+if [ $s -eq ${a[$mid]} ]
+
+then
+
+c=1
+
+break
+
+elif [ $s -lt ${a[$mid]} ]
+
+then
+
+u=$(($mid-1))
+
+else
+
+l=$(($mid+1))
+
+fi
+
+done
+
+if [ $c -eq 1 ]
+
+then
+
+echo “Element found at position $(($mid+1))”
+
+else
+
+echo “Element not found”
+
+fi
+
+
+12---bubblesort.sh
+arr=(10 8 20 100 12)
+
+echo "Array in original order"
+echo ${arr[*]}
+
+
+for ((i = 0; i<5; i++))
+do
+    
+    for((j = 0; j<5-i-1; j++))
+    do
+    
+        if [ ${arr[j]} -gt ${arr[$((j+1))]} ]
+        then
+          
+            temp=${arr[j]}
+            arr[$j]=${arr[$((j+1))]}  
+            arr[$((j+1))]=$temp
+        fi
+    done
+done
+
+echo "Array in sorted order :"
+echo ${arr[*]}
+
+
+13---factor.sh
+#!/bin/bash
+
+#to find factors of a number
+num=$1
+for (( i=2; i<=$1; i++ ));do
+    while [ $((num%$i)) == 0 ];do
+        echo $i
+        num=$((num/$i))
+    done
+done
+
+
+
+14---factorial.sh
+#shell script for factorial of a number
+
+echo "Enter a number"
+read num
+
+fact=1
+
+while [ $num -gt 1 ]
+do
+  fact=$((fact * num))  #fact = fact * num
+  num=$((num - 1))      #num = num - 1
+done
+
+echo $fact
+
+
+
+
+15---file name starts with a vowel.sh
+echo "Required files are:"
+ls | grep "^[aeiou]"
+
+
+
+16---greatest_2_numbers.sh
+echo "Enter Num1"
+read num1
+echo "Enter Num2"
+read num2
+
+if [ $num1 -gt $num2 ]
+then
+    echo $num1
+else
+    echo $num2
+fi
+
+
+
+17---greatest_3_numbers.sh
+#shell script to find the greatest of three numbers
+
+echo "Enter Num1"
+read num1
+echo "Enter Num2"
+read num2
+echo "Enter Num3"
+read num3
+
+if [ $num1 -gt $num2 ] && [ $num1 -gt $num3 ]
+then
+    echo $num1
+elif [ $num2 -gt $num1 ] && [ $num2 -gt $num3 ]
+then
+    echo $num2
+else
+    echo $num3
+fi
+
+
+
+18---leap_year.sh
+echo -n "Enter year (YYYY): "
+read y
+a = 'expr $y%4'
+b = 'expr $y%100'
+c = 'expr $y%400'
+if[$a -eq 0 -a $b -ne - -o $c -eq 0]
+then 
+echo "$y is leap year"
+else
+echo "$y is not a leap year"
+
+fi
+
+
+
+19---linear search.sh
+#!/bin/bash
+echo "Type the number of elements: "
+read num_of_elements
+echo "Type all elements separated by spaces (example: 1 2 3 4): "
+read all_elements;
+echo "Type the element you want to search: "
+read element;
+
+FOUND="NOTFOUND"
+for e in $all_elements 
+do
+	if [ $element == $e ]; 
+	then
+		echo "Successful search!";
+		FOUND="FOUND";
+		break;
+	fi
+done
+
+if [ $FOUND == "NOTFOUND" ];
+then
+	echo "Not Found!";
+fi
+
+
+
+20---list of all groups.sh
+#/etc/group file stores the details of groups that are present on the system. You can obtain all the group names using cut or awk command.
+
+cut -d ":" -f 1 /etc/group
+awk -F: '{print $1}' /etc/group
+
+
+21---list of all users.sh
+#/etc/passwd stores the details of users that are present on the system. Using cut or awk command, you can obtain a list of all users.
+
+$cut -d ":" -f 1 /etc/passwd
+$awk -F: '{print $1}' /etc/passwd
+
+
+
+22---merge sort.sh
+#!/bin/bash
+
+a=(10 9 8 4 5 6 7 3 2 1)
+
+merge() {
+	local first=2
+	local second=$(( $1 + 2 ))
+	for i in ${@:2}
+	do
+		if [[ $first -eq $(( $1 + 2 )) ]]
+		then
+			echo ${@:$second:1} ; ((second += 1))
+		else
+			if [[ $second -eq $(( ${#@} + 1 )) ]]
+			then
+				echo ${@:$first:1} ; ((first += 1))
+			else
+				if [[ ${@:$first:1} -lt ${@:$second:1} ]]
+				then
+					echo ${@:$first:1} ; ((first += 1))
+				else
+					echo ${@:$second:1} ; ((second += 1))
+				fi
+			fi
+		fi
+	done
+}
+
+mergesort() {
+	if [[ $1 -ge 2 ]]
+	then
+		local med=$(( $1 / 2 ))
+		local first=( $(mergesort $med ${@:2:$med}) )
+		local second=( $(mergesort $(( $1 - $med )) ${@:$(( $med + 2 )):$(( $1 - $med ))}) )
+		echo $(merge $med ${first[@]} ${second[@]})
+	else
+		echo $2
+	fi
+}
+
+echo ${a[@]} ; echo $(mergesort 10 ${a[@]})
+
+
+
+
+23---odd_even.sh
+# HOW TO FIND A NUMBER IS EVEN OR ODD IN SHELL SCRIPT
+clear 
+echo "---- EVEN OR ODD IN SHELL SCRIPT -----"
+echo -n "Enter a number:"
+read n
+echo -n "RESULT: "
+if [ `expr $n % 2` == 0 ]
+then
+	echo "$n is even"
+else
+	echo "$n is Odd"
+fi
+
+
+
+24---palindrome_number.sh
+echo -n "Enter number : "
+read n
+
+sd=0
+rev=""
+
+on=$n
+ 
+while [ $n -gt 0 ]
+do
+    sd=$(( $n % 10 )) 
+    n=$(( $n / 10 ))  
+    
+    rev=$( echo ${rev}${sd} ) 
+done
+ 
+if [ $on -eq $rev ];
+then
+  echo "Number is palindrome"
+else
+  echo "Number is NOT palindrome"
+fi
+
+
+
+25---palindrome_string.sh
+#!/bin/bash
+echo "Enter a String"
+read input
+reverse=""
+
+len=${#input}
+for (( i=$len-1; i>=0; i-- ))
+do 
+	reverse="$reverse${input:$i:1}"
+done
+if [ $input == $reverse ]
+then
+    echo "$input is palindrome"
+else
+    echo "$input is not palindrome"
+fi
+
+
+26---patterns.sh
+#1.#  *
+#     * *
+#     * * *
+#     * * * *
+#     * * * * *
+rows=4
+for((i=1; i<=rows; i++))
+do
+  for((j=1; j<=i; j++))
+  do
+    echo -n "* "
+  done
+  echo
+done
+
+
+#2.#1
+#   1 2
+#   1 2 3
+#   1 2 3 4
+#   1 2 3 4 5
+number=1
+rows=5
+for((i=1; i<=rows; i++))
+do
+  for((j=1; j<=i; j++))
+  do
+    echo -n "$number "
+    number=$((number + 1))
+  done
+  number=1
+  echo
+done
+
+
+
+#3.#* * * * *
+#     * * * *
+#     * * *
+#     * *
+#     *
+rows=5
+for((i=rows; i>=1; i--))
+do
+  for((j=1; j<=i; j++))
+  do
+    echo -n "* "
+  done
+  echo
+done
+
+
+
+
+#4.#1 2 3 4 5
+#   1 2 3 4
+#   1 2 3
+#   1 2
+#   1
+number=1
+rows=5
+for((i=rows; i>=1; i--))
+do
+  for((j=1; j<=i; j++))
+  do
+    echo -n "$number "
+    number=$((number + 1))
+  done
+  number=1
+  echo
+done
+
+
+
+
+#5.#        *
+#         * * *
+#       * * * * *
+#     * * * * * * *
+#   * * * * * * * * *
+rows=5
+for((i=1; i<=rows; i++))
+do
+  for((j=1; j<=rows - i; j++))
+  do
+    echo -n "  "
+  done
+  for((j=1; j<=2*i - 1; j++))
+  do
+    echo -n "* "
+  done
+  echo
+done
+
+
+
+
+#6.#     1
+#      2 3 2
+#    3 4 5 4 3
+#  4 5 6 7 6 5 4
+#5 6 7 8 9 8 7 6 5
+rows=5
+number=1
+for((i=1; i<=rows; i++))
+do
+  for((j=1; j<=rows - i; j++))
+  do
+    echo -n "  "
+  done
+  number=$i
+  k=1
+  for((j=1; j<=2*i - 1; j++))
+  do
+    if [ $j -lt $i ];
+    then
+      echo -n "$number "
+      number=$((number + 1))
+    elif [ $j -eq $i ];
+    then
+      echo -n "$number "
+      number=$((number - 1))
+    else
+      echo -n "$number "
+      number=$((number - 1))
+    fi
+  done
+  echo
+done
+
+
+
+
+
+#Bash Shell Script to print Floyd's Triangle
+#7.#1
+#   2 3
+#   4 5 6
+#   7 8 9 10
+
+number=1
+rows=4
+for((i=1; i<=rows; i++))
+do
+  for((j=1; j<=i; j++))
+  do
+    echo -n "$number "
+    number=$((number + 1))
+  done
+  echo
+done
+
+
+
+
+
+#8. Pascle pyramid
+#!/bin/bash
+echo -n "wnter the no of terms "
+read n
+for((i=0;i<n;i++))
+do
+     for((space0;space<n-i;space++))
+     do
+          echo -n **
+     done
+     for((j=0;j<i;j++))
+     do
+          if [$j -eq 0 -o $i -eq 0]
+          then
+              count=1
+          else
+              c=`expr $c\*$count/$j
+          fi
+          echo -n"$count"
+     done
+     echo
+done
+
+
+
+
+
+
+27---prime_number.sh
+#!/bin/bash
+echo -e "Enter Number : \c"
+read n
+for((i=2; i<=$n/2; i++))
+do
+  ans=$(( n%i ))
+  if [ $ans -eq 0 ]
+  then
+    echo "$n is not a prime number."
+    exit 0
+  fi
+done
+echo "$n is a prime number."
+
+
+
+
+28---primefactors_of_a_number.sh
+# script to find prime factors
+echo "enter an integer:"
+read input
+if [ $input -lt 1 ];then
+echo "not allowed!"
+exit 1
+fi
+
+
+
+
+29---quick sort.sh
+#!/bin/bash
+
+function partition {
+	let i=$2-1
+	let pivot=${x[$3]}
+	
+	for(( j="$2"; j<"$3"; j++ ))
+	do
+		if [ "${x[$j]}" -lt "$pivot" ]
+		then
+			let i=i+1
+			let temp=${x[$i]}
+			x[$i]=${x[$j]}
+			x[$j]=$temp
+		fi
+	done
+
+	let temp=${x[$((i+1))]}
+	x[$((i+1))]=${x[$3]}
+	x[$3]=$temp
+	
+	k=$((i+1))
+	
+
+}
+
+function quicksort {
+	if [ "$2" -lt "$3" ]
+	then
+		partition x $2 $3		
+		let pi=k
+		quicksort x $2 $((pi-1))
+		quicksort x $((pi+1)) $3
+	fi
+	
+}
+
+x=(3 5 1 7 11 3 2)
+quicksort x 0 6
+
+echo -n "Sorted array: "
+for i in "${x[@]}"
+do
+	echo -n "$i "
+done
+echo
+
+
+
+30---reverse_of_a_number.sh
+echo enter n
+read n
+num=0
+while [ $n -gt 0 ]
+do
+num=$(expr $num \* 10)
+k=$(expr $n % 10)
+num=$(expr $num + $k)
+n=$(expr $n / 10)
+done
+echo number is $num
+
+
+
+31---salary all question.sh
+#1. Write a script to calculate gross salary for any number of employees
+#Gross Salary =Basic + HRA + DA.
+#HRA=10% and DA= 15%.
+clear
+echo "Enter name of the employee file:"
+read filename
+j=1
+for i in `cat $filename`
+do
+    echo "EMPLOYEE $j"	
+	echo "==========="
+	name=$(echo $i | cut -d "|" -f2 )
+	basic=$(echo $i | cut -d "|" -f7 )
+	echo "Name :"$name
+	echo "Basic salary :"$basic
+	hra=$(expr $basic \* 10)
+	hra=$(expr $hra / 100)
+	da=$(expr $basic \* 15)
+	da=$(expr $da / 100)
+	echo "HRA :"$hra
+	echo "DA :"$da
+	gross=$(expr $basic + $hra + $da)
+	echo "GROSS :"$gross
+	j=$(expr $j + 1)
+ 
+done
+
+
+
+
+#2. An employee Basic Pay is input through keyboard where DA is 40% of basic pay and HRA is 20% of basic pay. Write a shell script to calculate gross salary, Gross Salary =Basic Pay + DA + HRA
+
+#!/bin/bash
+echo "enter the basic salary:"
+read basal
+grosal=$( echo "$basal+((40/100)*$basal)+((20/100)*$basal)" | bc -l)
+echo "The gross salary : $grosal"
+
+#3. Write a shell script that computes the gross salary of a employee according to the
+#following rules:
+#I. If basic salary is < 1500 then HRA =10% of the basic and DA =90% of the
+#basic.
+#II. If basic salary is >=1500 then HRA =Rs500 and DA=98% of the basic
+#The basic salary is entered interactively through the key board
+echo "enter the basic salary:"
+read bsal
+if [ $bsal -lt 1500 ]
+then
+gsal=$((bsal+((bsal/100)*10)+(bsal/100)*90))
+echo "The gross salary : $gsal"
+fi
+if [ $bsal -ge 1500 ]
+then
+gsal=$(((bsal+500)+(bsal/100)*98))
+echo "the gross salary : $gsal"
+fi
+
+
+
+
+32---search a string.sh
+#!/bin/bash
+a="Joy Mohunbagan";
+if [ `echo $a | grep -c "Mohunbagan" ` -gt 0 ]
+then
+  echo "Success"
+else
+  echo "Fail";
+fi
+
+
+
+
+33---sorting of array.sh
+#Ascending order
+declare nos[5]=(4 -1 2 66 10)
+echo "Original Numbers in array:"
+for (( i = 0; i <= 4; i++ ))
+do
+  echo ${nos[$i]}
+done
+for (( i = 0; i <= 4 ; i++ ))
+do
+   for (( j = $i; j <= 4; j++ ))
+   do
+      if [ ${nos[$i]} -gt ${nos[$j]}  ]; then
+           t=${nos[$i]}
+           nos[$i]=${nos[$j]}
+           nos[$j]=$t
+      fi
+   done
+done
+echo -e "\nSorted Numbers in Ascending Order:"
+for (( i=0; i <= 4; i++ )) 
+do
+  echo ${nos[$i]}
+done
+
+
+
+
+#Decending order
+#!/bin/bash
+echo "enter maximum number"
+read n
+echo "enter  Numbers in array:"
+for (( i = 0; i < $n; i++ ))
+do
+read nos[$i]
+done
+echo "  Numbers in an array are:"
+for (( i = 0; i < $n; i++ ))
+do
+echo ${nos[$i]}
+done
+for (( i = 0; i < $n ; i++ ))
+do
+for (( j = $i; j < $n; j++ ))
+do
+if [ ${nos[$i]} -lt ${nos[$j]}  ]; then
+t=${nos[$i]}
+nos[$i]=${nos[$j]}
+nos[$j]=$t
+fi
+done
+done
+echo -e "\nSorted Numbers "
+for (( i=0; i < $n; i++ ))
+do
+echo ${nos[$i]}
+done
+
+
+
+
+34---square root of a number.sh
+read -p "Enter a number: " number
+square_root=`echo "scale=4; sqrt($number)" | bc`
+echo "Square Root of $number is $square_root"
+
+
+
+35---sum.sh
+#!/bin/bash
+echo -n "Enter 1st number: "
+read first_number
+echo -n "Enter 2nd number: "
+read second_number
+
+sum=$(($first_number + $second_number))
+
+echo "Sum of $first_number and $second_number: "$sum
+
+
+
+
+36---sum_of_digits.sh
+echo "Enter a number"
+read num
+
+sum=0
+
+while [ $num -gt 0 ]
+do
+    mod=$((num % 10))    
+    sum=$((sum + mod))  
+    num=$((num / 10))    
+done
+
+echo $sum
+
+
+
+37---swap of two numbers.sh
+
+firstNumber=12
+secondNumber=24
+echo "Before Swapping"
+echo "First number: $firstNumber"
+echo "Second number: $secondNumber"
+temp=$firstNumber
+firstNumber=$secondNumber
+secondNumber=$temp
+echo "After Swapping"
+echo "First number: $firstNumber"
+echo "Second number: $secondNumber"
+
+
+
+38---transpose of a matrix.sh
+#Bash script to find transpose of a matrix
+matrix1=(1 2 3 4 5 6 7 8 9)
+rows=3
+cols=3
+echo "Matrix"
+for((i=0; i<rows; i++))
+do
+  for((j=0; j<cols; j++))
+  do
+    index=$((i*cols+j))
+    echo -n "${matrix1[index]} "
+  done
+  echo
+done
+ 
+for((i=0; i<rows; i++))
+do
+  for((j=i+1; j<cols; j++))
+  do
+    index1=$((rows*i + j))
+    index2=$((rows*j + i))
+    temp=${matrix1[index1]}
+    matrix1[index1]=${matrix1[index2]}
+    matrix1[index2]=$temp
+  done
+done
+ 
+echo "Transpose of a matrix"
+for((i=0; i<rows; i++))
+do
+  for((j=0; j<cols; j++))
+  do
+    index=$((i*cols+j))
+    echo -n "${matrix1[index]} "
+  done
+  echo
+done
+
+
+
+
+39---vowel_or_not.sh
+clear
+echo "Enter any character: "
+read ch
+case $ch in
+"a") echo "It is a vowel.";;
+"e") echo "It is a vowel.";;
+"i") echo "It is a vowel.";;
+"o") echo "It is a vowel.";;
+"u") echo "It is a vowel.";;
+*) echo "It is not a vowel."
+esac
+
+
+
+
+
+
+
+
+
+40---Write a shell script to display the list of users as well as the number of users connected to the system. 
+=> #!/bin/bash 
+ echo "Enter LOGNAME or UID" 
+ read input 
+ if [[i$input]]&7[$input -eq $input 2>/dev/null] 
+ then 
+ echo "Number of terminals are:" 
+ cat / etc / passwd | grep $input -c 
+ else 
+ cat / etc / passwd > userlist 
+ echo "Number of terminals are:" 
+ grep -c $input userlist 
+ fi 
+
+
+
+41---write a shell script that display a listof all files in the current directory to which you have read, write 
+and execute permissions. 
+=> #!/bin/bash 
+ for var in * 
+ do 
+ if test -r$var -a -w$var -a -x$var -a! -d$var 
+ then 
+ ls $var 
+ fi 
+ done 
+
+
+
+42---To list the files according to modification or access time depending on the argument in command 
+line 
+=> case $1 in 
+ lm) ls -lt;; 
+ la) ls -lut;; 
+ *) ls -l;; 
+ esac 
+
+
+
+43---Write a shell script to display the files created or updated within fourteen days from the current 
+date. 
+=> find -atime -14 -mtime -14 | sort -u 
+
+
+
+44---Develop a shell script which display all files with all attributes those have been created or modifies in 
+the month of november. 
+=>for var in * 
+ do 
+ set --`ls -l $var `if test "$6"="Nov" 
+ then 
+ ls -l$var 
+ fi 
+
+
+
+45---Write a shell script which reports names and size of all files in a directory whose size exceeds 100 
+bytes. the file names should be printed in decreasing order of their size. The total number of such files 
+should be reported. 
+=>#!/bin/bash 
+ if test $# -ne1 
+ then 
+ echo "Please giva a directory name and try again:" 
+ exit 
+ fi 
+ cd $1 find -size 100b | sort -nr 
+ echo "Total number of such files:" 
+ find -size +100b | grep -c ".*" 
+
+
+
+46---Write a shell script that shows the names of all the non-directory in the current directory and 
+calculates the sum of size of them. 
+=> dir | awk `{total+=$4} 
+ END (print total) 
+ ls -l;; 
+
+
+
+47---Write a shell script to list the names of files under the current directory that starts with a vowel. 
+=> ls |grep "^[aeiou]" 
+
+
+
+48---Write a shell script which receives tw filename as argument and check whether the two file`s 
+contents are same or not. If they are same then the second file should be deleted. 
+=>if test $# -ne2 
+ then 
+ echo "Please give the two filenames:" 
+ exit 
+ fi 
+ cmp -s $1 $2 
+ if test $? -eq0 
+ then 
+ echo "$1 and $2 are same" 
+ rm $2 
+ else 
+ echo "$1 and $2 are not same" 
+ fi 
+
+
+
+49---A file called list consist of several words. Write a shell script which will receive a list of filenames, 
+the first of which would e list. The shell script should report all occurrences of each word in list in the 
+rest of the files supplied as arguments. 
+=>if [$# -eq0] 
+ then 
+ echo "no argument" 
+ else 
+ tr " " " 
+ "<$1> temp 
+ shift 
+ for i in $* 
+ do 
+ tr " " " 
+ "<$i> temp1 
+ y= wc -l <temp` 
+ j=1 
+ while [$j -le $y] 
+ do 
+ x=`had -n $j temp | tail -1` 
+ c=`grep -c "$x" temp1` 
+ echo `expre $j 1` 
+ done 
+ done 
+ fi 
+
+
+
+50---Write a shell script which delets all lines containing the word UNIX in the files supplied as 
+arguments to the sell script. 
+=>if [$# -lt 1] 
+then 
+echo "Check the argument once" 
+exit 
+fi 
+echo "Enter a word" 
+ead word 
+for file in $* 
+do 
+grep -iv "$word" $file | tee 1>/dev/null 
+done 
+echo "Lines containing given word are deleted" 
+
+
+
+51---Write a shell script which get executed the moment users login. It should display the message 
+'GOOD MORNING', 'GOOD AFTERNOON' or 'GOOD EVENING' depending upon the time at which users 
+log in. 
+=>h=$(date +"%H") 
+ if [ $h -gt 6 -a $h -le 12 ] 
+ then 
+ echo Good Morning 
+ elif [ $h -gt 12 -a $h -le 16 ] 
+ then 
+ echo Good Afternoon 
+ elif [ $h -gt 16 -a $h -le 20 ] 
+ then 
+ echo Good Evening 
+ else 
+ echo Good Night 
+ fi 
+
+
+
+52---
+1. Search a file with specific name.
+$ find ./GFG -name sample.txt It will search for sample.txt in 
+GFG directory.
+2. Search a file with pattern.
+$ find ./GFG -name *.txt It will give all files which have ‘.txt’ at the end.
+3. Search for empty files and directories.
+$ find ./GFG -emptyThis command find all empty folders and files in the entered directory or sub-directories.
+4. Search for file with entered permissions.
+$ find ./GFG -perm 664
+
+
+
+53---set assigns it’s argument to the positional parameters 
+Example : 
+#!/bin/bash 
+set `date` 
+Echo “ the year of system = $6” 
+Echo “ the month of system = $4” 
+
+
+
+54---Write a shell script which displays the message “welcome” and 
+prints the date when you log in to your system. 
+=>h=$(date +"%H") 
+ if [ $h -gt 6 -a $h -le 12 ] 
+ then 
+ echo Welcome 
+ elif [ $h -gt 12 -a $h -le 16 ] 
+ then 
+ echo Welcome 
+ elif [ $h -gt 16 -a $h -le 20 ] 
+ then 
+ echo Welcome 
+ else 
+ echo Welcome 
+ fi 
+
+
+
+55---Write a shell script to check if a given file (filename supplied as command line argument) is a 
+regular file or not and find the total number of words, characters and lines in it 
+=>echo 
+ c=$( wc -c < test.txt) 
+ echo "Number of characters in test.txt is $c" 
+ echo 
+ w=$( wc -w < test.txt) 
+ echo "Number of words in test.txt is $w" 
+ echo 
+ l=$( ec -l < test.txt) 
+ echo "Number of lines in test.txt is $l" 
+
+
+
+
+56---Write a shell script to check whether the given file is a blank file or not. If not found blank then 
+display the contents of the file. 
+=>#!/bin/sh 
+f='afile.txt' 
+ 
+hasData () 
+{ 
+ echo "$f has data." 
+ ls -l $f 
+ cat $f 
+} 
+ 
+noData() 
+{ 
+ echo "$f is empty." 
+ ls -l $f 
+} 
+ 
+if [[ -s $f ]] 
+then 
+ hasData 
+else 
+ noData 
+fi 
+
+
+
+57---Write a shell function size( ) which lists only the total size of the files(filenames supplied as 
+arguments). 
+=>#!/bin/bash 
+FILENAME=/home/heiko/dummy/packages.txt 
+FILESIZE=$(stat -c%s "$FILENAME") 
+echo "Size of $FILENAME = $FILESIZE bytes." 
+
+
+
+
+58---Write a shell script to make a password based menu-driven program, which will give a maximum 
+of three chances to enter the password. If the g p pg iven password is correct then the program will 
+show the  Number of users currently logged in.  Calendar of current month.  Date in the format: 
+dd / mm / yyyy.  Q i u t The menu should be placed approximately in the centre of the screen 
+=>read -s -p "Enter Password: " pswd 
+echo -e "\nYour password is: " $pswd 
+echo "SELECT YOUR FAVORITE OPTION"; 
+echo "1. UERS CURRENTLY LOGIN" 
+echo "2. CALENDER" 
+echo "3. DATE IN FORMAT:DD/MM/YYYY" 
+echo "4. Exit from menu " 
+echo -n "Enter your menu choice [1-4]" 
+while : 
+do 
+read choice 
+case $choice in 
+ 1) echo "You have selected the option 1" 
+ echo "$(w)";; 
+ 2) echo "You have selected the option 2" 
+ echo "$(cal)";; 
+ 3) echo "You have selected the option 3" 
+ echo "$(date +%d/%m/%y)";; 
+ 4) echo "Quitting ..." 
+ exit;; 
+ *) echo "invalid option";; 
+ esac 
+ echo -n "Enter your menu choice [1-4]: " 
+ done 
+
+
+
+59---Sort the file/etc/psswd on GUID(primary) and UID(secondary) so that theusers with the same GUID 
+are placed together. Users with a lower UID should be placed higher in the list. 
+=> echo "$(cut -d ":" -f 3,4/etc/passwd | sort -n)" 
+
