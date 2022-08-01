@@ -1,8 +1,6 @@
 WEEK 1
 
 
-
-
 List the names of the users logged in and their total count without displaying the further details
 
   $who -q
@@ -50,8 +48,8 @@ Ensure that be displays the results of all divisions using three decimal places
 
 
 
-WEEK 2
 
+WEEK 2
 
 
 Create a directory structure in your home directory (cse,two sub directories cprogs and projects under cse)while being in your home directory
@@ -65,12 +63,10 @@ Create a directory structure in your home directory (cse,two sub directories cpr
 
 Change to the directory projects
 
-
   $cd cse
   $cd projects
 
 Create a file called biodata and store your name,age sex and address in it
-
 
   $cat > biodata.txt
   Name:Raman Raghav
@@ -118,10 +114,8 @@ Use Commands to create a directory in your own home directory called KeepOut who
 
 
 
+
 WEEK 3
-
-
-
 
 1a--List all files beginning with character 'a' on the screen and also store them in a file called file 1
 ans- $ ls[a]*|tee file1
@@ -173,6 +167,8 @@ ans- $ wc-1*.c
 
 
 
+
+
 WEEK 4
 
 
@@ -214,15 +210,14 @@ ans- grep '^.\<0,99\}$' *file1
 
 
 
+
+
 WEEK 5
 
 
 
 
 # EVEN OR ODD
-
-
-
 clear 
 echo "---- EVEN OR ODD IN SHELL SCRIPT -----"
 echo -n "Enter a number:"
@@ -238,9 +233,6 @@ fi
 
 
 # LEAP YEAR OR NOT
-
-
-
 echo -n "Enter year (YYYY): "
 read y
 a = 'expr $y%4'
@@ -256,9 +248,8 @@ fi
 
 
 
+
 # GREATEST OF 3 NUMBERS
-
-
 echo "Enter Num1"
 read num1
 echo "Enter Num2"
@@ -279,16 +270,28 @@ fi
 
 
 
+#GENERATE ALL COMBOS OF 1, 2, 3.
+#!/bin/bash
+clear
+for i in 1 2 3
+do
+for j in 1 2 3
+do
+for k in 1 2 3
+do
+echo $i $j $k
+done
+done
+done
+
+
+
+
+
 WEEK 6
 
 
-
-
 # REVERSE OF A NUMBER
-
-
-
-
 echo enter n
 read n
 num=0
@@ -305,9 +308,6 @@ echo number is $num
 
 
 # DIVISIBLE BY 11
-
-
-
 echo "Enter any Number"
 read n
 r=`expr $y % 11`
@@ -322,9 +322,6 @@ fi
 
 
 # ADDITION SUBSTRACTION MULTIPLICATION DIVISION
-
-
-
 # !/bin/bash
 # Take user Input
 echo "Enter Two numbers : "
@@ -347,14 +344,15 @@ echo "Result : $res"
 
 
 
+
+
+
 WEEK 7
 
 
 
 
 list of all files in the current directort to which you have read,wr8 & execute permissions:
-
-
 #!/bin/sh
 for var in *
 do
@@ -364,11 +362,9 @@ ls $var
 fi done
 
 
+
 list files by modification time when called with /m & by acess time when called with la.By default script
 should show listing of all files in the current directory
-
-
-
 #!/bin/sh
 case $1 in
 lm) ls-lt ;;
@@ -378,16 +374,12 @@ esa c
 
 
 files created or updated within fourteen days from current date:
-
-
 #!/bin/sh
 find -atime -14 -mtime -14 | sort -u
 #end of script
 
+
 files with all attributes those have been created or modified in  the month of November.
-
-
-
 #!/bin/sh
 for var in *
 do
@@ -400,17 +392,14 @@ done
 
 
 
+
 WEEK 8
-
-
 
 
 
 Report names & sizes of all files in a directory whose exceeds 100 bytes.
 the filenames should be printed in decreasing order of their size.The total no. of such files should 
 be reported:
-
-
 
 #!/bin/sh
 if test $ # -ni
@@ -424,8 +413,8 @@ find -Size + 100b|grep-C "*"
 
 
 
-Names of all the non-directory files in current directory and calculate sum of six of them
 
+Names of all the non-directory files in current directory and calculate sum of six of them
 
 dir | awk ' total +=$4};
 END (print total)
@@ -434,14 +423,13 @@ ls-l;;
 
 list name of files under current directory that starts with a vowel
 
-
 echo "Required files are:"
 ls| grep " ^[aeiou]"
 
 
+
 Receives 2 filename as argument and checks whether th e 2 files contents are same or not.
 If same then the second file should be deleted.
-
 
 if test $#_ne 2
 then 
@@ -458,6 +446,8 @@ fi
 
 
 
+
+
 WEEK 9
 
 
@@ -465,8 +455,6 @@ WEEK 9
 
 Write a shell script which deletes all lines containing the word UNIX in the files supplied as arguments to
 this shell script.
-
-
 
 #! /bin/sh
 #Purpose: To delete the lines containing the word UNIX in the file supplied.
