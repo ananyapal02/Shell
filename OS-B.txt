@@ -131,30 +131,18 @@ done
 
 
 7---all_combination_of_1,23.sh
+
 # Shell script to generate all combinations of 1 2 3
-
-
-
 clear
-
 for i in 1 2 3
-
 do
-
 for j in 1 2 3
-
 do
-
 for k in 1 2 3
-
 do
-
 echo $i $j $k
-
 done
-
 done
-
 done
 
 
@@ -201,122 +189,65 @@ echo "The area of the triangle is $area"
 
 11---binary search.sh
 echo “Enter the limit:”
-
 read n
-
 echo “Enter the numbers”
-
 for(( i=0 ;i<n; i++ ))
-
 do
-
 read m
-
 a[i]=$m
-
 done
-
 for(( i=1; i<n; i++ ))
-
 do
-
 for(( j=0; j<n-i; j++))
-
 do
-
 if [ ${a[$j]} -gt ${a[$j+1]} ]
-
 then
-
 t=${a[$j]}
-
 a[$j]=${a[$j+1]}
-
 a[$j+1]=$t
-
 fi
-
 done
-
 done
-
 echo “Sorted array is”
-
 for(( i=0; i<n; i++ ))
-
 do
-
 echo “${a[$i]}”
-
 done
-
 echo “Enter the element to be searched :”
-
 read s
-
 l=0
-
 c=0
-
 u=$(($n-1))
-
 while [ $l -le $u ]
-
 do
-
 mid=$(((( $l+$u ))/2 ))
-
 if [ $s -eq ${a[$mid]} ]
-
 then
-
 c=1
-
 break
-
 elif [ $s -lt ${a[$mid]} ]
-
 then
-
 u=$(($mid-1))
-
 else
-
 l=$(($mid+1))
-
 fi
-
 done
-
 if [ $c -eq 1 ]
-
 then
-
 echo “Element found at position $(($mid+1))”
-
 else
-
 echo “Element not found”
-
 fi
-
-
 12---bubblesort.sh
 arr=(10 8 20 100 12)
-
 echo "Array in original order"
 echo ${arr[*]}
-
-
 for ((i = 0; i<5; i++))
 do
-    
     for((j = 0; j<5-i-1; j++))
     do
-    
         if [ ${arr[j]} -gt ${arr[$((j+1))]} ]
         then
-          
             temp=${arr[j]}
             arr[$j]=${arr[$((j+1))]}  
             arr[$((j+1))]=$temp
@@ -326,6 +257,8 @@ done
 
 echo "Array in sorted order :"
 echo ${arr[*]}
+
+
 
 
 13---factor.sh
@@ -586,7 +519,8 @@ do
 done
 
 
-#2.#1
+#2.
+#   1
 #   1 2
 #   1 2 3
 #   1 2 3 4
@@ -606,7 +540,8 @@ done
 
 
 
-#3.#* * * * *
+#3.
+#     * * * * *
 #     * * * *
 #     * * *
 #     * *
@@ -1393,4 +1328,3 @@ case $choice in
 59---Sort the file/etc/psswd on GUID(primary) and UID(secondary) so that theusers with the same GUID 
 are placed together. Users with a lower UID should be placed higher in the list. 
 => echo "$(cut -d ":" -f 3,4/etc/passwd | sort -n)" 
-
